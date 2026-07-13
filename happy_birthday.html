@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윤영아 생일 축하해! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        body {
+            font-family: 'Gowun Dodum', sans-serif;
+            background-color: #fff0f5; /* 연한 핑크색 배경 */
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .active {
+            display: flex;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 버튼 스타일 */
+        button {
+            background-color: #ffb6c1;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        button:hover { background-color: #ff91a4; transform: scale(1.05); }
+        .no-btn { background-color: #ccc; }
+        .no-btn:hover { background-color: #999; }
+
+        /* 페이지 2: 곰돌이 케이크 */
+        .cake-container {
+            font-size: 5rem;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .flame {
+            font-size: 3rem;
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            animation: flicker 0.5s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* 페이지 3: 펭귄 애니메이션 */
+        .penguin-party {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: dance 0.5s infinite alternate;
+        }
+        @keyframes dance {
+            0% { transform: translateY(0) rotate(-10deg); }
+            100% { transform: translateY(-20px) rotate(10deg); }
+        }
+        .fireworks { font-size: 3rem; }
+
+        /* 페이지 4: 편지지 스타일 */
+        .letter-paper {
+            background-color: #fff9e6;
+            width: 80%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            background-image: repeating-linear-gradient(transparent, transparent 29px, #ccc 30px);
+            background-attachment: local;
+        }
+
+        /* 경고 메시지 */
+        #error-msg {
+            display: none;
+            color: #d32f2f;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- [ BGM 설정 ] 생일 축하 노래 파일이 있다면 src 안에 파일명을 넣으세요. (예: src="song.mp3") -->
+    <audio id="hbd-song" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+
+    <!-- 페이지 1: 본인 확인 -->
+    <div id="page1" class="page active">
+        <h2>오늘 생일인 이윤영 본인이 맞나요? 👀</h2>
+        <div>
+            <button onclick="nextPage(2)">맞습니다 🙆‍♂️</button>
+            <button class="no-btn" onclick="showError()">아닙니다 🙅‍♂️</button>
+        </div>
+        <div id="error-msg">🚫 나가세요! 🚫</div>
+    </div>
+
+    <!-- 페이지 2: 곰돌이 초 끄기 -->
+    <div id="page2" class="page">
+        <h2>소원을 빈 후, 불꽃을 클릭하여 초를 꺼주세요! 🙏</h2>
+        <div class="cake-container">
+            <div id="flame" class="flame" onclick="blowOut()">🔥</div>
+            🐻🎂
+        </div>
+    </div>
+
+    <!-- 페이지 3: 펭귄 파티 (10초) -->
+    <div id="page3" class="page">
+        <h2 class="fireworks">🎆 팡! 팡! 🎇</h2>
+        <h2>생일 축하해!! 🎉</h2>
+        <div class="penguin-party">🐧🥳</div>
+        <p>10초 뒤에 편지가 열립니다...</p>
+    </div>
+
+    <!-- 페이지 4: 편지 -->
+    <div id="page4" class="page">
+        <!-- 💡 편지 내용 입력: 아래 글씨를 지우고 원하는 편지 내용을 쓰세요! -->
+        <!-- 만약 편지 사진을 넣고 싶다면 아래 <div class="letter-paper"> 안의 내용을 지우고 <img src="편지사진이름.jpg" style="max-width:100%;"> 를 넣으세요. -->
+        <div class="letter-paper">
+            윤영아 안녕! <br>
+            오늘 너의 생일을 정말정말 축하해.<br>
+            항상 내 옆에 있어줘서 고맙고, <br>
+            앞으로도 예쁘게 만나자.<br>
+            맛있는 거 많이 먹고 오늘 하루 세상에서 제일 행복한 사람이 되길 바라!<br>
+            (여기에 더 길게 편지 내용을 적어주세요 ✍️)
+        </div>
+        <button onclick="nextPage(5)">다 읽었으면 클릭 💌</button>
+    </div>
+
+    <!-- 페이지 5: 마무리 -->
+    <div id="page5" class="page">
+        <h1>생일 진심으로 축하해 사랑해 ❤️<br><br>- 수빈이가 -</h1>
+    </div>
+
+    <script>
+        // 페이지 이동 함수
+        function nextPage(pageNum) {
+            // 모든 페이지 숨기기
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // 원하는 페이지만 보이기
+            document.getElementById('page' + pageNum).classList.add('active');
+
+            // 3페이지(파티)로 넘어갈 때 노래 재생 및 10초 타이머 설정
+            if (pageNum === 3) {
+                let song = document.getElementById('hbd-song');
+                song.play().catch(e => console.log("자동 재생이 차단되었습니다."));
+                
+                setTimeout(() => {
+                    nextPage(4);
+                }, 10000); // 10초 = 10000밀리초
+            }
+        }
+
+        // '아닙니다' 눌렀을 때
+        function showError() {
+            document.getElementById('error-msg').style.display = 'block';
+        }
+
+        // 촛불 끄기 함수
+        function blowOut() {
+            let flame = document.getElementById('flame');
+            flame.innerHTML = '💨'; // 불꽃을 연기(바람) 이모지로 변경
+            flame.style.animation = 'none'; // 흔들림 애니메이션 정지
+            
+            // 1초 뒤에 다음 페이지로 이동
+            setTimeout(() => {
+                nextPage(3);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

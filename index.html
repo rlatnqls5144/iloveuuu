@@ -28,6 +28,7 @@
             justify-content: center;
             width: 100%;
             padding: 20px;
+            box-sizing: border-box;
         }
 
         .active {
@@ -56,6 +57,14 @@
         button:hover { background-color: #ff91a4; transform: scale(1.05); }
         .no-btn { background-color: #ccc; }
         .no-btn:hover { background-color: #999; }
+
+        /* 이전/다음 버튼을 나란히 놓기 위한 스타일 */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
         /* 페이지 2: 곰돌이 케이크 */
         .cake-container {
@@ -89,27 +98,17 @@
         }
         .fireworks { font-size: 3rem; }
 
-        /* 페이지 4: 편지 페이지 전체 설정 (위쪽 잘림 방지 및 화면 스크롤) */
-        #page4 {
-            height: 100vh;           /* 화면 높이를 가득 채웁니다 */
-            overflow-y: auto;        /* 내용이 화면보다 길어지면 스크롤을 만듭니다 */
-            justify-content: flex-start; /* 정렬을 가운데가 아닌 '위쪽'부터 시작해서 잘림을 방지합니다 */
-            padding-top: 60px;       /* 맨 위 편지지가 화면 상단에 너무 붙지 않도록 여백 추가 */
-            padding-bottom: 60px;    /* 맨 아래 버튼 뒤에 여백을 주어 스크롤이 시원하게 끝나도록 함 */
-            box-sizing: border-box;  /* 여백(Padding)이 높이 계산에 문제를 주지 않도록 고정 */
-        }
-
-        /* 페이지 4: 편지지 스타일 (내용에 따라 무제한으로 길어짐) */
+        /* 편지지 스타일 (잘림 방지를 위해 기본 형태로 복구) */
         .letter-paper {
             background-color: #fff9e6;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
             padding: 30px;
             border-radius: 5px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
             text-align: left;
             line-height: 1.8;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             background-image: repeating-linear-gradient(transparent, transparent 29px, #ccc 30px);
             background-attachment: local;
         }
@@ -126,7 +125,7 @@
 </head>
 <body>
 
-    <!-- [ BGM 설정 ] 생일 축하 노래 파일이 있다면 src 안에 파일명을 넣으세요. (예: src="song.mp3") -->
+    <!-- [ BGM 설정 ] -->
     <audio id="hbd-song" src="nastelbom-happy-birthday-471481.mp3" preload="auto"></audio>
 
     <!-- 페이지 1: 본인 확인 -->
@@ -157,25 +156,47 @@
         <p> 뒤에 편지가 나와요...</p>
     </div>
 
-    <!-- 페이지 4: 편지 -->
+    <!-- 페이지 4: 편지 1장 -->
     <div id="page4" class="page">
-        <!-- 💡 편지 내용 입력: 아래 글씨를 지우고 원하는 편지 내용을 쓰세요! -->
-        <!-- 만약 편지 사진을 넣고 싶다면 아래 <div class="letter-paper"> 안의 내용을 지우고 <img src="편지사진이름.jpg" style="max-width:100%;"> 를 넣으세요. -->
         <div class="letter-paper">
-            To. 이윤영 <br>
+            To. 이윤영 <br><br>
             안농 오빠~~ 오늘 생일 정말정말 축하드립니당!! <br>
-            오빠의 생일을 함께 보내주지 못해 미안하당... 그래서 이렇게나마 준비를 해봤써.. 후후 평소에 생일을 별로 안 챙긴다고 말하곤 했지만, 그래도 오늘만큼은 든든하고 맛난 거 마니마니 먹구 세상에서 가장 행복한 사람이 되었으면 좋겠어. 내가 비록 당장 눈앞에는 없지만, 절에서 부처님께 오빠가 항상 건강하고, 위염 같은 것도 싹 나아버리고, 좋은 일만 가득하게 해달라고 행복을 빌어주께!
-            요새 이것저것 하느라 많이 바쁘고 신경 쓸 것도 많아서 정말 힘들었지? 옆에서 볼 때마다 아주 짠행... 오빤 나랑 누워서 딩굴딩굴 하는 거 좋아하는뎅.. 그동안 너무너무 고생 많았써 토닥토닥. 지금도 여전히 정신없고 바쁠진 모르겠지만.. 오늘 하루만큼은 다 내려놓고 푹 쉬면서 조금이나마 한가하고 여유로운 하루를 보냈으면 좋겠다.
-            이제 본격적으로 취준하느라 앞으로 더 바빠질 테고, 나중엔 취업해서 멀리멀리 갈 수도 있을 텐데... 흑흑 벌써부터 아쉽당 그러니까 오빠 더 바빠지기 전에, 그리고 멀리 가기 전에 지금 나랑 더 많이 보고 더 놀러 다니장.
-            어느새 우리가 만나서 함께 맞는 오빠의 2번째 생일이네. 작년에도, 올해도 오빠 생일을 축하해 줄 수 있어서 기쁘당. 앞으로 다가올 수많은 생일들도 내가 제일 먼저 축하해 주께. 다시 한번 생일 너무너무 축하하고, 태어나줘서 고맙고 내 곁에 있어줘서 고마워.
-            항상 응원하고 많이많이 사랑해(하트) <br>
-            - 오빠를 넘 사랑하는 수빈이가-
+            오빠의 생일을 함께 보내주지 못해 미안하당... 그래서 이렇게나마 준비를 해봤써.. 나와 제미나이의 합작이랄까.. 후후 😎<br><br>
+            평소에 생일을 별로 안 챙긴다고 말하곤 했지만, 그래도 오늘만큼은 든든하고 맛난 거 마니마니 먹구 세상에서 가장 행복한 사람이 되었으면 좋겠어.<br><br>
+            내가 비록 당장 눈앞에는 없지만, 절에서 부처님께 오빠가 항상 건강하고, 위염 같은 것도 싹 나아버리고, 좋은 일만 가득하게 해달라고 행복을 빌어주께! 🙏
         </div>
-        <button onclick="nextPage(5)">다 읽었으면 클릭 💌</button>
+        <button onclick="nextPage(5)">다음 페이지로 이동 ➡️</button>
     </div>
 
-    <!-- 페이지 5: 마무리 -->
+    <!-- 페이지 5: 편지 2장 -->
     <div id="page5" class="page">
+        <div class="letter-paper">
+            요새 이것저것 하느라 많이 바쁘고 신경 쓸 것도 많아서 정말 힘들었지? 옆에서 볼 때마다 아주 짠행... 오빤 나랑 누워서 딩굴딩굴 하는 거 좋아하는뎅.. 그동안 너무너무 고생 많았써 토닥토닥. <br><br>
+            지금도 여전히 정신없고 바쁠진 모르겠지만.. 오늘 하루만큼은 다 내려놓고 푹 쉬면서 조금이나마 한가하고 여유로운 하루를 보냈으면 좋겠다.<br><br>
+            이제 본격적으로 취준하느라 앞으로 더 바빠질 테고, 나중엔 취업해서 멀리멀리 갈 수도 있을 텐데... 흑흑 벌써부터 아쉽당 🥺 그러니까 오빠 더 바빠지기 전에, 그리고 멀리 가기 전에 지금 나랑 더 많이 보고 더 놀러 다니장.
+        </div>
+        <div class="button-group">
+            <button onclick="nextPage(4)">⬅️ 이전 페이지로 이동</button>
+            <button onclick="nextPage(6)">다음 페이지로 이동 ➡️</button>
+        </div>
+    </div>
+
+    <!-- 페이지 6: 편지 3장 -->
+    <div id="page6" class="page">
+        <div class="letter-paper">
+            어느새 우리가 만나서 함께 맞는 오빠의 2번째 생일이네. 작년에도, 올해도 오빠 생일을 축하해 줄 수 있어서 기쁘당. 앞으로 다가올 수많은 생일들도 내가 제일 먼저 축하해 주께.<br><br>
+            다시 한번 생일 너무너무 축하하고, 태어나줘서 고맙고 내 곁에 있어줘서 고마워.<br><br>
+            항상 응원하고 많이많이 사랑해 ❤️<br>
+            - 오빠를 넘 사랑하는 수빈이가 -
+        </div>
+        <div class="button-group">
+            <button onclick="nextPage(5)">⬅️ 이전 페이지로 이동</button>
+            <button onclick="nextPage(7)">다 읽었으면 클릭 💌</button>
+        </div>
+    </div>
+
+    <!-- 페이지 7: 마무리 -->
+    <div id="page7" class="page">
         <h1>생일 진심으로 축하해 사랑해 ❤️<br><br>- 수빈이가 -</h1>
     </div>
 
@@ -189,14 +210,14 @@
             // 원하는 페이지만 보이기
             document.getElementById('page' + pageNum).classList.add('active');
 
-            // 3페이지(파티)로 넘어갈 때 노래 재생 및 10초 타이머 설정
+            // 3페이지(파티)로 넘어갈 때 노래 재생 및 12초 타이머 설정
             if (pageNum === 3) {
                 let song = document.getElementById('hbd-song');
                 song.play().catch(e => console.log("자동 재생이 차단되었습니다."));
                 
                 setTimeout(() => {
                     nextPage(4);
-                }, 12000); // 10초 = 10000밀리초
+                }, 12000); 
             }
         }
 

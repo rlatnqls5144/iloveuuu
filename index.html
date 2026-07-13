@@ -89,30 +89,29 @@
         }
         .fireworks { font-size: 3rem; }
 
-        /* 페이지 4: 편지지 스타일 */
+        /* 페이지 4: 편지 페이지 전체 설정 (위쪽 잘림 방지 및 화면 스크롤) */
+        #page4 {
+            height: 100vh;           /* 화면 높이를 가득 채웁니다 */
+            overflow-y: auto;        /* 내용이 화면보다 길어지면 스크롤을 만듭니다 */
+            justify-content: flex-start; /* 정렬을 가운데가 아닌 '위쪽'부터 시작해서 잘림을 방지합니다 */
+            padding-top: 60px;       /* 맨 위 편지지가 화면 상단에 너무 붙지 않도록 여백 추가 */
+            padding-bottom: 60px;    /* 맨 아래 버튼 뒤에 여백을 주어 스크롤이 시원하게 끝나도록 함 */
+            box-sizing: border-box;  /* 여백(Padding)이 높이 계산에 문제를 주지 않도록 고정 */
+        }
+
+        /* 페이지 4: 편지지 스타일 (내용에 따라 무제한으로 길어짐) */
         .letter-paper {
             background-color: #fff9e6;
             width: 80%;
             max-width: 500px;
-            
-            /* 높이 제한 제거: 내용에 맞춰 무제한으로 커짐 */
             padding: 30px;
             border-radius: 5px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
             text-align: left;
             line-height: 1.8;
-            margin-bottom: 20px;
-            
-            /* 스크롤 제어 제거 (내용에 맞춰 자동 조절됨) */
+            margin-bottom: 30px;
             background-image: repeating-linear-gradient(transparent, transparent 29px, #ccc 30px);
             background-attachment: local;
-        }
-
-        /* [추가] 전체 페이지가 편지 내용을 다 보여줄 수 있도록 설정 */
-        #page4 {
-            height: auto; /* 내용이 길어지면 페이지 높이도 자동 확장 */
-            min-height: 100vh; /* 최소 화면 높이는 유지 */
-            padding-bottom: 50px; /* 아래쪽 여백 추가 */
         }
 
         /* 경고 메시지 */
